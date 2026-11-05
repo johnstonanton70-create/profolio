@@ -73,22 +73,155 @@ input,textarea{font:inherit;padding:12px 14px;border:1px solid var(--line);borde
 footer{border-top:1px solid var(--line);padding:32px 0;color:var(--muted);font-size:15px}
 footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 @media(max-width:800px){.hero .wrap,.split{grid-template-columns:1fr}.grid{grid-template-columns:1fr}header .wrap{height:auto;padding-top:12px;padding-bottom:12px;flex-direction:column;align-items:flex-start}.cta{padding:32px 20px}.btn.alt{margin:10px 0 0}}
+/* ===== Home page animations and hover effects ===== */
+.hero{position:relative;overflow:hidden}
+.hero .wrap{position:relative;z-index:1}
+.blob{position:absolute;border-radius:50%;filter:blur(40px);opacity:.45;background:var(--accent-2);animation:drift 14s ease-in-out infinite alternate}
+.b1{width:280px;height:280px;left:-80px;top:20px}
+.b2{width:200px;height:200px;right:12%;top:-60px;animation-duration:18s;opacity:.3}
+.b3{width:240px;height:240px;right:-60px;bottom:-80px;animation-duration:11s}
+@keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(50px,40px) scale(1.2)}}
+.intro>*{animation:up .8s cubic-bezier(.2,.7,.2,1) both}
+.intro>*:nth-child(1){animation-delay:.1s}.intro>*:nth-child(2){animation-delay:.3s}.intro>*:nth-child(3){animation-delay:.5s}.intro>*:nth-child(4){animation-delay:.7s}
+@keyframes up{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:none}}
+.role{font:600 20px "Sora",sans-serif;margin-top:18px;color:var(--accent)}
+.typed{border-right:3px solid var(--accent);padding-right:4px;animation:caret .8s steps(1) infinite}
+@keyframes caret{50%{border-color:transparent}}
+.intro .lead{margin-top:14px}
+.mascot{animation:up .9s .4s cubic-bezier(.2,.7,.2,1) both}
+.mascot svg{width:100%;height:auto;display:block;overflow:visible}
+.halo{fill:var(--accent);opacity:.18;transform-origin:210px 190px;animation:pulse 4s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.07)}}
+.char{animation:bob 3s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.arm{transform-origin:104px 256px;animation:wave 1.1s ease-in-out infinite alternate}
+@keyframes wave{from{transform:rotate(-16deg)}to{transform:rotate(18deg)}}
+.eye{transform-box:fill-box;transform-origin:center;animation:blink 4s infinite}
+@keyframes blink{0%,92%,100%{transform:scaleY(1)}96%{transform:scaleY(.1)}}
+.fl{animation:float 3.4s ease-in-out infinite}
+.f2{animation-delay:-.8s}.f3{animation-delay:-1.6s}.f4{animation-delay:-2.4s}
+@keyframes float{50%{transform:translateY(-14px) rotate(6deg)}}
+@keyframes pop{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:scale(1)}}
+.mascot:hover .arm{animation-duration:.4s}
+.mascot:hover .char{animation-duration:.7s}
+.mascot:hover .fl{animation-duration:1.2s}
+.ticker{overflow:hidden;background:var(--navy);color:#eaf7ef;padding:14px 0;white-space:nowrap;border-block:1px solid var(--line)}
+.ticker div{display:inline-block;animation:scroll 26s linear infinite;font:600 18px "Sora",sans-serif}
+.ticker:hover div{animation-play-state:paused}
+.ticker span{margin:0 26px}.ticker i{color:var(--accent-2);font-style:normal}
+@keyframes scroll{to{transform:translateX(-50%)}}
+.js .rv:not(.in){opacity:0}
+.rv.in{animation:rise .8s cubic-bezier(.2,.7,.2,1) backwards;animation-delay:var(--d,0s)}
+@keyframes rise{from{opacity:0;transform:translateY(40px) scale(.97)}}
+.brand{transition:letter-spacing .25s,color .25s}.brand:hover{letter-spacing:.02em;color:var(--accent)}
+nav a{position:relative;transition:color .2s,background .2s}
+nav a::after{content:"";position:absolute;left:14px;right:14px;bottom:4px;height:2px;background:var(--accent);transform:scaleX(0);transition:transform .25s}
+nav a:hover::after{transform:scaleX(1)}nav a[aria-current=page]::after{display:none}
+.btn{position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s,background .2s}
+.btn::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.45) 50%,transparent 70%);transform:translateX(-120%)}
+.btn:hover{transform:translateY(-3px);box-shadow:0 10px 22px rgba(11,107,58,.35)}
+.btn:hover::after{transform:translateX(120%);transition:transform .7s}
+.btn:active{transform:translateY(0) scale(.97)}
+.btn.alt:hover{border-color:var(--accent);background:var(--surface)}
+.card{position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s,border-color .3s}
+.card::before{content:"";position:absolute;left:0;top:0;height:4px;width:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.card:hover{transform:translateY(-10px);box-shadow:0 18px 36px rgba(11,107,58,.22);border-color:var(--accent)}
+.card:hover::before{transform:scaleX(1)}
+.card h3{transition:color .25s}.card:hover h3{color:var(--accent)}
+.ico{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;font-size:26px;background:var(--bg);margin-bottom:16px;transition:transform .4s cubic-bezier(.3,1.8,.5,1),background .3s}
+.card:hover .ico{transform:rotate(-12deg) scale(1.2);background:var(--accent-2)}
+.cta{transition:transform .35s,box-shadow .35s}.cta:hover{transform:scale(1.015);box-shadow:0 22px 44px rgba(11,107,58,.3)}
+footer a,footer span{transition:color .2s}footer span:hover{color:var(--accent)}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.js .rv:not(.in){opacity:1}.ticker{overflow-x:auto}}
+
+/* ===== Contact page ===== */
+.hero{padding:64px 0 56px}
+.bubble{transform-origin:195px 70px;animation:pop .6s 1.2s cubic-bezier(.3,1.6,.5,1) both}
+.paper{animation:paper 3.4s ease-in-out infinite}
+@keyframes paper{0%,15%{transform:translateY(0)}45%,70%{transform:translateY(-36px)}100%{transform:translateY(0)}}
+.dot{animation:dot 1s ease-in-out infinite}.d2{animation-delay:.15s}.d3{animation-delay:.3s}
+@keyframes dot{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-7px)}}
+.badge{transform-box:fill-box;transform-origin:center;animation:badge 2s ease-in-out infinite}
+@keyframes badge{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+.ringer{transform-box:fill-box;transform-origin:center;animation:ringer 2.6s ease-in-out infinite}
+@keyframes ringer{0%,60%,100%{transform:rotate(0)}64%{transform:rotate(-14deg)}70%{transform:rotate(14deg)}76%{transform:rotate(-10deg)}82%{transform:rotate(8deg)}90%{transform:rotate(0)}}
+.mascot:hover .paper{animation-duration:1.4s}
+.mascot:hover .dot{animation-duration:.5s}
+.contact-card{display:flex;gap:16px;align-items:center;text-decoration:none;margin-bottom:16px;color:inherit}
+.contact-card .ico{margin:0;flex:none}
+.contact-card h3{margin:0}.contact-card p{margin:0}
+.contact-card:hover{transform:translateX(10px)}
+.contact-card .arrow{margin-left:auto;font-size:22px;color:var(--accent);opacity:0;transform:translateX(-10px);transition:opacity .3s,transform .3s}
+.contact-card:hover .arrow{opacity:1;transform:none}
+form.card{display:grid;gap:16px}
+form.card:hover{transform:none;border-color:var(--accent);box-shadow:0 18px 36px rgba(11,107,58,.18)}
+label{transition:color .25s}label:focus-within{color:var(--accent)}
+input,textarea{transition:border-color .25s,box-shadow .25s,transform .25s}
+input:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px rgba(18,163,94,.25);transform:translateY(-2px)}
+textarea{resize:vertical}
+.btn .plane{display:inline-block;margin-left:6px;transition:transform .5s cubic-bezier(.3,1.4,.5,1)}
+.btn:hover .plane{transform:translate(8px,-8px) rotate(-12deg)}
+.split h2{font-size:24px}
+@media(max-width:800px){.mascot{max-width:420px;margin:0 auto}}
 </style>
 </head>
 <body>
 <header><div class="wrap"><a class="brand" href="index.html">Johnston Anton</a><nav aria-label="Main"><ul><li><a href="index.html">Home</a></li><li><a href="skills.html">Skills</a></li><li><a href="experience.html">Experience</a></li><li><a href="about.html">About</a></li><li><a href="contact.html" aria-current="page">Contact</a></li></ul></nav></div></header>
 <main>
-<div class="wrap page-title"><h1>Contact</h1><p>Tell me about your business and what you want to achieve.</p></div>
-<div class="wrap"><div class="split">
-<div><h3>Details</h3><p>Email: <a href="mailto:you@example.com">you@example.com</a></p><p>Phone: +91 00000 00000</p><p>LinkedIn: <a href="https://www.linkedin.com/">your profile link</a></p></div>
-<form action="mailto:you@example.com" method="post" enctype="text/plain">
+<section class="hero"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="wrap">
+<div class="intro"><h1>Contact</h1><p class="role">Let's talk about <span id="typed" class="typed">Meta Ads</span></p><p class="lead">Tell me about your business and what you want to achieve.</p><div><a class="btn" href="#message">Send a message <span class="plane">✈️</span></a></div></div>
+<div class="mascot"><svg viewBox="0 0 420 380" role="img" aria-label="Cartoon of a friendly digital marketer waving next to a big envelope with a new message">
+<circle class="halo" cx="210" cy="190" r="165"/>
+<ellipse cx="210" cy="342" rx="150" ry="12" fill="#000" opacity=".12"/>
+<g transform="translate(42,140)"><g class="fl f3"><g class="ringer"><rect x="-14" y="-24" width="28" height="48" rx="6" fill="#0b2a1b"/><rect x="-10" y="-19" width="20" height="34" rx="3" fill="#86efac"/><circle cy="19" r="2.5" fill="#fff"/></g></g></g>
+<g transform="translate(392,98)"><g class="fl f2"><circle r="19" fill="#ffc83d"/><path d="M0 -11 L3 -3 L11 -3 L5 2 L7 10 L0 5 L-7 10 L-5 2 L-11 -3 L-3 -3Z" fill="#fff"/></g></g>
+<g class="fl f4"><rect x="252" y="92" width="86" height="38" rx="19" fill="#fff"/><path d="M270 128 L262 142 L286 129Z" fill="#fff"/><circle class="dot" cx="280" cy="111" r="5" fill="#0b6b3a"/><circle class="dot d2" cx="295" cy="111" r="5" fill="#0b6b3a"/><circle class="dot d3" cx="310" cy="111" r="5" fill="#0b6b3a"/></g>
+<rect x="240" y="188" width="150" height="92" rx="10" fill="#e8f7ee" stroke="#0b6b3a" stroke-width="3"/>
+<g class="paper"><rect x="256" y="198" width="118" height="70" rx="6" fill="#fff" stroke="#a9d3bb" stroke-width="2"/><rect x="268" y="212" width="60" height="6" rx="3" fill="#12a35e"/><rect x="268" y="226" width="94" height="5" rx="2.5" fill="#cfeedd"/><rect x="268" y="238" width="80" height="5" rx="2.5" fill="#cfeedd"/></g>
+<path d="M243 278 L315 226 L387 278Z" fill="#cfeedd" stroke="#0b6b3a" stroke-width="3" stroke-linejoin="round"/>
+<circle class="badge" cx="386" cy="190" r="15" fill="#ff6b8a"/><text x="386" y="196" text-anchor="middle" font-family="Sora,system-ui,sans-serif" font-size="16" font-weight="700" fill="#fff">1</text>
+<g class="char">
+<path d="M92 335 C92 262 118 226 150 226 C182 226 208 262 208 335Z" fill="#0b6b3a"/>
+<path d="M138 227 L150 246 L162 227Z" fill="#fff"/>
+<line x1="198" y1="258" x2="232" y2="240" stroke="#0b6b3a" stroke-width="17" stroke-linecap="round"/>
+<circle cx="236" cy="237" r="9" fill="#f5c6a0"/>
+<g class="arm"><line x1="104" y1="256" x2="66" y2="214" stroke="#0b6b3a" stroke-width="17" stroke-linecap="round"/><circle cx="62" cy="208" r="10" fill="#f5c6a0"/></g>
+<circle cx="150" cy="165" r="46" fill="#f5c6a0"/>
+<path d="M103 162 C100 112 200 112 197 162 C182 140 118 140 103 162Z" fill="#2b1b12"/>
+<ellipse class="eye" cx="135" cy="170" rx="5" ry="6.5" fill="#1a1a1a"/><ellipse class="eye" cx="165" cy="170" rx="5" ry="6.5" fill="#1a1a1a"/>
+<circle cx="123" cy="186" r="7" fill="#ff9aa2" opacity=".6"/><circle cx="177" cy="186" r="7" fill="#ff9aa2" opacity=".6"/>
+<path d="M134 188 Q150 205 166 188" fill="none" stroke="#7a3b2e" stroke-width="3.5" stroke-linecap="round"/>
+</g>
+<g class="bubble"><rect x="105" y="26" width="180" height="42" rx="21" fill="#fff" stroke="#0b6b3a" stroke-width="3"/><path d="M175 67 L190 86 L203 67Z" fill="#fff" stroke="#0b6b3a" stroke-width="3" stroke-linejoin="round"/><rect x="180" y="63" width="30" height="6" fill="#fff"/><text x="195" y="53" text-anchor="middle" font-family="Sora,system-ui,sans-serif" font-size="16" font-weight="700" fill="#0b2418">Let's talk!</text></g>
+</svg></div></div></section>
+<div class="ticker" aria-hidden="true"><div><span>Meta Ads</span><i>✦</i><span>Google Ads</span><i>✦</i><span>SEO</span><i>✦</i><span>Lead generation</span><i>✦</i><span>Retargeting</span><i>✦</i><span>Keyword research</span><i>✦</i><span>Meta Ads</span><i>✦</i><span>Google Ads</span><i>✦</i><span>SEO</span><i>✦</i><span>Lead generation</span><i>✦</i><span>Retargeting</span><i>✦</i><span>Keyword research</span><i>✦</i><span>Meta Ads</span><i>✦</i><span>Google Ads</span><i>✦</i><span>SEO</span><i>✦</i><span>Lead generation</span><i>✦</i><span>Retargeting</span><i>✦</i><span>Keyword research</span><i>✦</i><span>Meta Ads</span><i>✦</i><span>Google Ads</span><i>✦</i><span>SEO</span><i>✦</i><span>Lead generation</span><i>✦</i><span>Retargeting</span><i>✦</i><span>Keyword research</span><i>✦</i></div></div>
+<div class="wrap" style="padding-top:56px;padding-bottom:64px"><div class="split">
+<div><h2 class="rv">Details</h2>
+<a class="card contact-card rv" href="mailto:johnstonanton70@gmail.com"><div class="ico">✉️</div><div><h3>Email</h3><p>johnstonanton70@gmail.com</p></div><span class="arrow">→</span></a>
+<a class="card contact-card rv" href="tel:+910000000000"><div class="ico">📞</div><div><h3>Phone</h3><p>+91 00000 00000</p></div><span class="arrow">→</span></a>
+<a class="card contact-card rv" href="https://www.linkedin.com/"><div class="ico">💼</div><div><h3>LinkedIn</h3><p>your profile link</p></div><span class="arrow">→</span></a></div>
+<form id="message" class="card rv" action="mailto:johnstonanton70@gmail.com" method="post" enctype="text/plain">
 <label>Name<input type="text" name="name" required autocomplete="name"></label>
 <label>Email<input type="email" name="email" required autocomplete="email"></label>
 <label>Message<textarea name="message" rows="5" required></textarea></label>
-<button class="btn" type="submit">Send message</button></form>
-</div></div><div style="height:64px"></div>
-
+<button class="btn" type="submit"><span class="t">Send message</span> <span class="plane">✈️</span></button></form>
+</div></div>
 </main>
 <footer><div class="wrap"><span>&copy; 2026 Johnston Anton. All rights reserved.</span><span>Digital Marketer: Meta Ads, Google Ads and SEO</span></div></footer>
+<script>
+(function(){
+var d=document.documentElement;d.classList.add("js");
+var rv=[].slice.call(document.querySelectorAll(".rv"));
+rv.forEach(function(e,i){e.style.setProperty("--d",(i%3)*0.12+"s")});
+if("IntersectionObserver" in window){var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}})},{threshold:.15});rv.forEach(function(e){io.observe(e)})}else{rv.forEach(function(e){e.classList.add("in")})}
+document.getElementById("message").addEventListener("submit",function(){this.querySelector(".t").textContent="Opening your email app..."});
+if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+var el=document.getElementById("typed"),w=["Meta Ads","Google Ads","SEO"],i=0,n=0,del=false;
+function t(){var s=w[i];n+=del?-1:1;el.textContent=s.slice(0,n);var ms=del?45:90;
+if(!del&&n===s.length){del=true;ms=1400}else if(del&&n===0){del=false;i=(i+1)%w.length;ms=350}
+setTimeout(t,ms)}
+setTimeout(t,2200);
+})();
+</script>
 </body>
 </html>
